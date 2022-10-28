@@ -1,14 +1,16 @@
 #INPUTS (to be edited according to local path)
 #required:
-RSDB="C:/Users/yves/Documents/Tadarida/baseref" #path of the local Reference Sound Data Base (RSDB)
-MRF="C:/Users/yves/Documents/Tadarida/Tadarida-C/tadaridaC_src/Modified_randomForest.R" #a dedicated function of randomForest (allows specific strata sampling, see manual)
+#RSDB="C:/Users/yves/Documents/Tadarida/baseref" #path of the local Reference Sound Data Base (RSDB)
+RSDB="/home/richard/z/22/vleermuisgeluiden/RSDBnl"
+#MRF="C:/Users/yves/Documents/Tadarida/Tadarida-C/tadaridaC_src/Modified_randomForest.R" #a dedicated function of randomForest (allows specific strata sampling, see manual)
+MRF="/home/richard/git/tadarida-c/tadaridaC_src/Modified_randomForest.R" #a dedicated function of randomForest (allows specific strata sampling, see manual)
 #optional:
-SpeciesList=read.csv("C:/Users/yves/Documents/Tadarida/Tadarida-C/SpeciesList.csv") #to uncomment if a species grouping and/or filtering is necessary
+#SpeciesList=read.csv("C:/Users/yves/Documents/Tadarida/Tadarida-C/SpeciesList.csv") #to uncomment if a species grouping and/or filtering is necessary
 
 #SETTINGS (first two are intended to balance unvenness in species sampling)
 SubSamp=11 #level of minimum subsampling (= X times average number of calls per species)
 GradientSamp=-0.1 #gradient strength (must be negative)
-GeoFilter="France" #to uncomment and edit if a species filtering is necessary
+#GeoFilter="France" #to uncomment and edit if a species filtering is necessary
 
 #loading randomForest library to build the classifier then modified randomforest function
 set.seed(921)

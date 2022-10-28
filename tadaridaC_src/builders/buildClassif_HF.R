@@ -2,14 +2,16 @@ library(data.table) #used to generate features table from labelled sound databas
 #INPUTS (to be edited according to local path)
 #VarSel=fread("VarSel.csv")
 VarSel=NA #NA if no selection of variables
+VarSel=fread("/home/richard/git/tadarida-c/tadaridaC_src/other_inputs/VarSel.csv")
 SaveTemp=F
 #Ftabase="C:/Users/yvesb/Documents/Tadarida/TP_Ecoac211102/Group4_tabase3HF_sansfiltre.csv"
-Ftabase=file.choose()
+#Ftabase=file.choose()
+Ftabase=paste0(RSDB,"tabase.csv")
 StartForest=1
 ToPredict="Nesp" 
 Simplified=T
-MRF="C:/Users/Yves Bas/Documents/Tadarida/Tadarida-C/tadaridaC_src/Modified_randomForest.R"
-
+#MRF="C:/Users/Yves Bas/Documents/Tadarida/Tadarida-C/tadaridaC_src/Modified_randomForest.R"
+MRF="/home/richard/git/tadarida-c/tadaridaC_src/tadaridaC_src/Modified_randomForest.R"
 
 #SETTINGS (both are intended to balance unvenness in species sampling)
 SubSamp=11 #level of minimum subsampling (= X times average number of calls per species)
@@ -29,13 +31,13 @@ tabase3$Nesp=factor(tabase3$Nesp,exclude=NULL)
 tabase3$Site=factor(tabase3$Site,exclude=NULL)
 
 #creating a formula using all sound features
-if (is.na(VarSel))
-{
-  test1=match("StTime",names(tabase3))
-  test2=match("RAHE16",names(tabase3))
-  VarSel$VarSel=names(tabase3)[c(test1:test2)]
-  
-}
+#if (is.na(VarSel))
+#{
+#  test1=match("StTime",names(tabase3))
+#  test2=match("RAHE16",names(tabase3))
+#  VarSel$VarSel=names(tabase3)[c(test1:test2)]
+#  
+#}
 FormulCrit=VarSel$VarSel[1]
 for (i in 2:length(VarSel$VarSel))
 {
@@ -143,8 +145,11 @@ for (i in StartForest:50)
 Sys.time()
 
 
-save (ClassifEspA,file=paste0("ClassifEsp_",gsub(".csv","",basename(Ftabase)),"_"
-                              ,substr(Sys.time(),1,10),".learner")) 
+#save (ClassifEspA,file=paste0("ClassifEsp_",gsub(".csv","",basename(Ftabase)),"_",substr(Sys.time(),1,10),".learner"))
+save (ClassifEspA,file=paste0(RSDB, "tabase.learner")) 
+
+
+
 Sys.time()
 
 if(!Simplified){

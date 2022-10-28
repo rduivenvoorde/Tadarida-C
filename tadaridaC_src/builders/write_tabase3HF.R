@@ -1,14 +1,17 @@
-library(data.table) #used to generate features table from labelled sound database
+#library(data.table) #used to generate features table from labelled sound database
 #INPUTS (to be edited according to local path)
 #required:
 
-RSDB=choose.dir()
+#RSDB=choose.dir()
 #RSDB=choose.dir()
 #RSDB="C:\\Users\\yvesb\\Documents\\Tadarida\\TP_Ecoac211102\\Group1"
 #RSDB="D:/RSDB_LF"
-HPF=0 #high-pass filter
+#RSDB="/home/richard/z/22/vleermuisgeluiden/RSDBnl/"
+#HPF=0 #high-pass filter
+#HPF=21 #high-pass filter
 
 #VarSel=fread("VarSel.csv") #to uncomment to select variables
+#VarSel=fread("/home/richard/git/tadarida-c/tadaridaC_src/other_inputs/VarSel.csv") #to uncomment to select variables
 #optional:
 #SpeciesList=as.data.frame(fread("SpeciesList_ForVerbatim.csv")) #to uncomment if a species grouping and/or filtering is necessary
 #SpeciesList=as.data.frame(fread("SpeciesList.csv")) #to uncomment if a species grouping and/or filtering is necessary
@@ -157,7 +160,7 @@ if (exists("GeoFilter")==T)
   }
   tabase3$SubNesp=paste(tabase3$Nesp,tabase3$Type,sep="_")
   
-  fwrite(tabase3,paste0(RSDB,"_tabase3HF_sansfiltre.csv"),sep=";"
+  fwrite(tabase3,paste0(RSDB,"tabase.csv"),sep=";"
          ,row.names=F)
   
 }

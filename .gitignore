@@ -10,6 +10,8 @@
 # RStudio files
 .Rproj.user/
 
+log
+
 ClassifEspVotes170110.csv
 IdTot170112.csv
 matconf.csv
